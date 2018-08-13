@@ -104,32 +104,40 @@ class BackgroundExt {
                 @Override
                 public void onCameraAvailable(String cameraId) {
                     super.onCameraAvailable(cameraId);
-
-
-
+                    moveToApp(false);
                 }
 
                 @Override
                 public void onCameraUnavailable(String cameraId) {
                     super.onCameraUnavailable(cameraId);
-                    
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    moveToApp(true);
 
-                        Activity app = getActivity();
-                        Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
-                        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-                        if (launchIntent != null) {
-                          app.startActivity(launchIntent);
-                        }
-                        else {
-                          getActivity().startActivity(intent);
-                        }
                 }
             }, null);
         }
 
+    }
+
+    private void moveToApp(boolean isCamOpen)
+    {
+        if(!isCamOpen)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            Activity app = getActivity();
+            Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
+            //Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("com.cyrillus.MyContacts");
+            launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            if (launchIntent != null) {
+              app.startActivity(launchIntent);
+            }
+            else {
+              getActivity().startActivity(intent);
+            }
+        }
 
     }
 
