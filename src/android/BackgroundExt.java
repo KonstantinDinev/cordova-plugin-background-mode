@@ -118,7 +118,8 @@ class BackgroundExt {
 
         if(BackgroundExt.CamCounter != 0) return;
         else moveToApp();
-
+        
+        BackgroundExt.CamCounter = 0;
     }
 
     private void moveToApp()
