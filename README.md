@@ -1,12 +1,12 @@
-# cordova-plugin-navigate
+# cordova-plugin-navigateToAnotherApp
 Navigate to another installed app on the Android Platform
 
 # Android Activity - Intent - Task (Stack pool)
 Clone this plugin to the root directory of your project. 
 To navigate from your app to another change the packageName for the Intent.
 
-Whenever you make a change to the plugin source, copy and paste in the terminal the
-snippet bellow.
+Whenever you make a change to the plugin sourcecode, make sure you 
+copy and paste in the terminal the snippet bellow.
 
 ```
 sudo cordova plugins rm cordova-plugin-background-mode
