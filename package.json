@@ -1,61 +1,28 @@
 {
-  "_args": [
-    [
-      "cordova-plugin-background-mode@0.7.2",
-      "/Users/atos/Documents/Github/android-intent"
-    ]
-  ],
-  "_from": "cordova-plugin-background-mode@0.7.2",
-  "_id": "cordova-plugin-background-mode@0.7.2",
-  "_inBundle": false,
-  "_integrity": "sha1-6vVjnAZahyMbPs91em4osQHQMy8=",
-  "_location": "/cordova-plugin-background-mode",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "cordova-plugin-background-mode@0.7.2",
-    "name": "cordova-plugin-background-mode",
-    "escapedName": "cordova-plugin-background-mode",
-    "rawSpec": "0.7.2",
-    "saveSpec": null,
-    "fetchSpec": "0.7.2"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-background-mode/-/cordova-plugin-background-mode-0.7.2.tgz",
-  "_spec": "0.7.2",
-  "_where": "/Users/atos/Documents/Github/android-intent",
-  "author": {
-    "name": "Sebastián Katzer"
-  },
-  "bugs": {
-    "url": "https://github.com/katzer/cordova-plugin-background-mode/issues"
-  },
-  "description": "Prevent app from going to sleep in background.",
-  "engines": [
-    {
-      "name": "cordova",
-      "version": ">=6.0.0"
+    "name": "helloworld",
+    "displayName": "HelloCordova",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-plugin-background-mode": "file:cordova-plugin-background-mode",
+        "cordova-plugin-intent": "^0.1.2",
+        "cordova-plugin-whitelist": "^1.3.3",
+        "jquery": "^3.3.1"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-background-mode": {}
+        },
+        "platforms": [
+            "android"
+        ]
     }
-  ],
-  "homepage": "https://github.com/katzer/cordova-plugin-background-mode#readme",
-  "keywords": [
-    "appplant",
-    "background",
-    "cordova",
-    "ecosystem:cordova"
-  ],
-  "license": "Apache 2.0",
-  "name": "cordova-plugin-background-mode",
-  "platforms": [
-    "ios",
-    "android"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/katzer/cordova-plugin-background-mode.git"
-  },
-  "version": "0.7.2"
 }

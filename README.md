@@ -1,36 +1,26 @@
-# cordova-plugin-navigateToAnotherApp
-Navigate to another installed app on the Android Platform
+#HowTO use
 
-# Android Activity - Intent - Task (Stack pool)
-Clone this plugin to the root directory of your project. 
-To navigate from your app to another change the packageName for the Intent.
-
-Whenever you make a change to the plugin sourcecode, make sure you 
-copy and paste in the terminal the snippet bellow.
-
+navigate to the folder project with terminal
+`npm install`
+paste this in the terminal to symlink the local plugin and after making changes in it
 ```
 sudo cordova plugins rm cordova-plugin-background-mode
 sudo cordova plugin add --link cordova-plugin-background-mode
 sudo cordova platforms rm android
 sudo cordova platforms add android@6.2.3
 sudo cordova run android
+
 ```
 
-This will install the plugin from your local directory.
 
-# To extract a PKG name of an .apk file
-Navigate to ~/Library/Android/Sdk/build-tools/27.0.3
 
-``` ./aapt dump badging ~/Downloads/YouDestinationApplication.apk | grep package:\ name ```
-
-# How to install a package 
-Navigate to ~/Library/Android/Sdk/platform-tools
-
-```./adb install ~/SomeApp.apk ```
-
-# Useful sources
-https://developer.android.com/guide/components/activities/tasks-and-back-stack
-
+Useful sources:
 https://stackoverflow.com/questions/2780102/open-another-application-from-your-own-intent
-
-https://stackoverflow.com/questions/36841971/get-string-from-jsonarray-java-android
+TO IMPLEMENT
+1. Create an intent with action=MAIN and category=LAUNCHER
+2. Get the PackageManager from the current context using context.getPackageManager
+3. packageManager.queryIntentActivity(<intent>, 0) where intent has category=LAUNCHER, action=MAIN or packageManager.resolveActivity(<intent>, 0) to get the first activity with main/launcher
+4. Get theActivityInfo you're interested in
+5. From the ActivityInfo, get the packageName and name
+6. Finally, create another intent with with category=LAUNCHER, action=MAIN, componentName = new ComponentName(packageName, name) and setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+7. Finally, context.startActivity(newIntent)
