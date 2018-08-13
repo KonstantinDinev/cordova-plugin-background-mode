@@ -42,6 +42,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession;
+import android.hardware.camera2.CameraDevice;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CaptureRequest;
 
 
 class BackgroundExt {
@@ -90,20 +95,40 @@ class BackgroundExt {
       if (packageName == "") {
         packageName = null;
       }
+        Activity m = getActivity();
 
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        CameraManager manager = (CameraManager) m.getSystemService(Context.CAMERA_SERVICE);
 
-        Activity app = getActivity();
-        Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage(packageName);
-        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            manager.registerAvailabilityCallback(new CameraManager.AvailabilityCallback() {
+                @Override
+                public void onCameraAvailable(String cameraId) {
+                    super.onCameraAvailable(cameraId);
 
-        if (launchIntent != null) {
-          app.startActivity(launchIntent);
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+                        Activity app = getActivity();
+                        Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
+                        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+                        if (launchIntent != null) {
+                          app.startActivity(launchIntent);
+                        }
+                        else {
+                          getActivity().startActivity(intent);
+                        }
+
+                }
+
+                @Override
+                public void onCameraUnavailable(String cameraId) {
+                    super.onCameraUnavailable(cameraId);
+                    
+                }
+            }, null);
         }
-        else {
-          getActivity().startActivity(intent);
-        }
+
 
     }
 
