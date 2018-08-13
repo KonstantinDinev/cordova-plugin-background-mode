@@ -105,6 +105,14 @@ class BackgroundExt {
                 public void onCameraAvailable(String cameraId) {
                     super.onCameraAvailable(cameraId);
 
+
+
+                }
+
+                @Override
+                public void onCameraUnavailable(String cameraId) {
+                    super.onCameraUnavailable(cameraId);
+                    
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
@@ -118,13 +126,6 @@ class BackgroundExt {
                         else {
                           getActivity().startActivity(intent);
                         }
-
-                }
-
-                @Override
-                public void onCameraUnavailable(String cameraId) {
-                    super.onCameraUnavailable(cameraId);
-                    
                 }
             }, null);
         }
