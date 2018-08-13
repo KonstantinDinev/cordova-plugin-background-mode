@@ -50,7 +50,9 @@ import android.hardware.camera2.CaptureRequest;
 
 
 class BackgroundExt {
+    // Flag to disable backbutton navigation to another App if Cam is active
     public static int CamCounter = 0;
+
     // Weak reference to the cordova interface passed by the plugin
     private final WeakReference<CordovaInterface> cordova;
 
@@ -131,7 +133,7 @@ class BackgroundExt {
 
         Activity app = getActivity();
         Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
-        //Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("com.cyrillus.MyContacts");
+   
         launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
         if (launchIntent != null) {
