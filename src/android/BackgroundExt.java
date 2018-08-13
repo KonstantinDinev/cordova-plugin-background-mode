@@ -50,7 +50,7 @@ import android.hardware.camera2.CaptureRequest;
 
 
 class BackgroundExt {
-
+    public int CamCounter = 0;
     // Weak reference to the cordova interface passed by the plugin
     private final WeakReference<CordovaInterface> cordova;
 
@@ -104,41 +104,39 @@ class BackgroundExt {
                 @Override
                 public void onCameraAvailable(String cameraId) {
                     super.onCameraAvailable(cameraId);
-                    moveToApp(false);
+
                 }
 
                 @Override
                 public void onCameraUnavailable(String cameraId) {
                     super.onCameraUnavailable(cameraId);
-                    moveToApp(true);
 
-
+                    BackgroundExt.CamCounter++;
                 }
             }, null);
         }
 
+        if(BackgroundExt.CamCounter != 0) return;
+        else moveToApp();
+
     }
 
-    private void moveToApp(boolean isCamOpen)
+    private void moveToApp()
     {
-        if(!isCamOpen)
-        {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            Activity app = getActivity();
-            Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
-            //Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("com.cyrillus.MyContacts");
-            launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        Activity app = getActivity();
+        Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("ru.systtech.mobile");
+        //Intent launchIntent = app.getPackageManager().getLaunchIntentForPackage("com.cyrillus.MyContacts");
+        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            if (launchIntent != null) {
-              app.startActivity(launchIntent);
-            }
-            else {
-              getActivity().startActivity(intent);
-            }
+        if (launchIntent != null) {
+          app.startActivity(launchIntent);
         }
-
+        else {
+          getActivity().startActivity(intent);
+        }
     }
 
 
