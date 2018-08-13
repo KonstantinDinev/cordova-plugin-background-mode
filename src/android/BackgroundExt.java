@@ -50,7 +50,7 @@ import android.hardware.camera2.CaptureRequest;
 
 
 class BackgroundExt {
-    public int CamCounter = 0;
+    public static int CamCounter = 0;
     // Weak reference to the cordova interface passed by the plugin
     private final WeakReference<CordovaInterface> cordova;
 
