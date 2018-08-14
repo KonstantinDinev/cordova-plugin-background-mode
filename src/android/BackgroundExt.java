@@ -51,7 +51,7 @@ import android.hardware.camera2.CaptureRequest;
 
 class BackgroundExt {
     // Flag to disable backbutton navigation to another App if Cam is active
-    public static int CamCounter = 0;
+    public static int CamCounter = 1;
 
     // Weak reference to the cordova interface passed by the plugin
     private final WeakReference<CordovaInterface> cordova;
@@ -107,7 +107,6 @@ class BackgroundExt {
                 public void onCameraAvailable(String cameraId) {
                     super.onCameraAvailable(cameraId);
                     
-                    BackgroundExt.CamCounter++;
                 }
 
                 @Override
