@@ -106,7 +106,8 @@ class BackgroundExt {
                 @Override
                 public void onCameraAvailable(String cameraId) {
                     super.onCameraAvailable(cameraId);
-
+                    
+                    BackgroundExt.CamCounter++;
                 }
 
                 @Override
